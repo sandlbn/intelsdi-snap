@@ -9,9 +9,9 @@ EXPOSE 8181
 
 RUN mkdir -p /opt/snap/src
 
-ADD snap.tgz /opt/snap/src
+ADD https://github.com/sandlbn/intelsdi-snap/raw/master/snap.tgz /opt/snap/src/
 
 # Docker unpacked the snap files when they're local
-RUN tar -zxf /opt/snap/src/snap.tgz -C /
+RUN tar -zxvf /opt/snap/src/snap.tgz -C /
 
 ENTRYPOINT ["/opt/snap/bin/snapd", "--api-port", "8181", "--log-level", "2", "--auto-discover", "/opt/snap/plugin", "-t", "0" ]
